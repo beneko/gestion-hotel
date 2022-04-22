@@ -1,0 +1,38 @@
+<div class="container">
+    <h2 *ngIf="hotels && hotels.length > 0 ">{{ title }}</h2>
+    <button class="btn btn-info d-flex my-3" (click)="toggleIsNewBadge()">
+        <span class="material-icons">
+            {{ showBadge ? 'visibility_off' : 'visibility' }}
+        </span>
+        <span class="ml-2">
+            {{ showBadge ? 'Cacher' : 'Afficher'}} les badges
+        </span>
+    </button>
+    <hr>
+
+    <div class="row my-3">
+        <div class="col-md-4">
+            Filter:
+            <b>{{ hotelFilter }}</b>
+        </div>
+        
+        <div class="col-md-8">
+            <input type="text" class="form-control" [(ngModel)]="hotelFilter">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col" *ngFor="let hotel of hotels">
+            <div class=" card" style="width: 18rem;" >
+                <img [src]="hotel.imageUrl" class="card-img-top" [title]="hotel.hotelName" [alt]="hotel.hotelName">
+                <div class="card-body">
+                  <h5 class="card-title">{{ hotel.hotelName }}</h5>
+                  <span class="badge rounded-pill bg-primary" *ngIf="showBadge">Nouveau</span>
+                  <p class="card-text">{{ hotel.description }}</p>
+                  <a href="#" class="btn btn-primary">Détails</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
