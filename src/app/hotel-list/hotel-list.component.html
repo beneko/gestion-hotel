@@ -22,7 +22,7 @@
     </div>
     
     <div class="row">
-        <div class="col" *ngFor="let hotel of hotels">
+        <div class="col" *ngFor="let hotel of filteredHotels">
             <div class=" card" style="width: 18rem;" >
                 <img [src]="hotel.imageUrl" class="card-img-top" [title]="hotel.hotelName" [alt]="hotel.hotelName">
                 <div class="card-body">

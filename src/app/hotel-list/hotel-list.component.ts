@@ -7,9 +7,7 @@ import { IHotel } from "./hotel";
     styleUrls: ['./hotel-list.component.css']
 })
 export class HotelListComponent implements OnInit{
-      ngOnInit(): void {
-            console.log("niveau de vie initial");
-      }
+
     public title = 'Liste hotels';
 
     public hotels: IHotel[] = [
@@ -47,11 +45,37 @@ export class HotelListComponent implements OnInit{
         }
       ];
 
+      ngOnInit(): void {
+            this.filteredHotels = this.hotels;
+      }
+
       public showBadge: boolean = false;
+
+      public filteredHotels: IHotel[] = [];
 
       public toggleIsNewBadge(): void {
           this.showBadge = !this.showBadge;
       };
 
-      public hotelFilter = 'color';
+      private _hotelFilter = '';
+
+      public get hotelFilter(): string {
+            return this._hotelFilter;
+      }
+
+      public set hotelFilter(filter: string) {
+            this._hotelFilter = filter;
+
+            this.filteredHotels = this.hotelFilter ? this.filterHotels(this.hotelFilter) :  this.hotels ;
+      }
+
+      private filterHotels(criteria: string): IHotel[] {
+            criteria = criteria.toLocaleLowerCase();
+
+            const result = this.hotels.filter(
+                  (hotel: IHotel) => hotel.hotelName.toLocaleLowerCase().indexOf(criteria) != -1
+            );
+            
+            return result;
+      }
 }
