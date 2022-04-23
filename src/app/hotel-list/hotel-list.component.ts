@@ -9,7 +9,7 @@ import { IHotel } from "./hotel";
 export class HotelListComponent implements OnInit{
 
     public title = 'Liste hotels';
-
+    public showBadge: boolean = false;
     public hotels: IHotel[] = [
         {
               "hotelId": 1,
@@ -44,38 +44,32 @@ export class HotelListComponent implements OnInit{
               "rating": 2.5
         }
       ];
+      public filteredHotels: IHotel[] = [];
+      private _hotelFilter = '';
 
       ngOnInit(): void {
             this.filteredHotels = this.hotels;
       }
 
-      public showBadge: boolean = false;
-
-      public filteredHotels: IHotel[] = [];
-
-      public toggleIsNewBadge(): void {
-          this.showBadge = !this.showBadge;
-      };
-
-      private _hotelFilter = '';
-
       public get hotelFilter(): string {
             return this._hotelFilter;
       }
-
+      
       public set hotelFilter(filter: string) {
             this._hotelFilter = filter;
-
             this.filteredHotels = this.hotelFilter ? this.filterHotels(this.hotelFilter) :  this.hotels ;
       }
-
+      
       private filterHotels(criteria: string): IHotel[] {
             criteria = criteria.toLocaleLowerCase();
-
             const result = this.hotels.filter(
                   (hotel: IHotel) => hotel.hotelName.toLocaleLowerCase().indexOf(criteria) != -1
-            );
-            
-            return result;
-      }
+                  );
+                  
+                  return result;
+            }
+
+      public toggleIsNewBadge(): void {
+            this.showBadge = !this.showBadge;
+      };
 }
