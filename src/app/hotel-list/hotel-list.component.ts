@@ -1,11 +1,14 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { IHotel } from "./hotel";
 
 @Component({
     selector: 'app-hotel-list',
     templateUrl: './hotel-list.component.html'
 })
-export class HotelListComponent{
+export class HotelListComponent implements OnInit{
+      ngOnInit(): void {
+            console.log("niveau de vie initial");
+      }
     public title = 'Liste hotels';
 
     public hotels: IHotel[] = [
