@@ -26,9 +26,13 @@
             <div class=" card" style="width: 18rem;" >
                 <img [src]="hotel.imageUrl" class="card-img-top" [title]="hotel.hotelName" [alt]="hotel.hotelName">
                 <div class="card-body">
-                  <h5 class="card-title">{{ hotel.hotelName }}</h5>
+                  <h5 class="card-title">{{ hotel.hotelName | uppercase }}</h5>
                   <span class="badge rounded-pill bg-primary" *ngIf="showBadge">Nouveau</span>
-                  <p class="card-text">{{ hotel.description }}</p>
+                    <p class="card-text">
+                      {{ hotel.description }}
+                        <br>
+                      {{ hotel.price | currency : 'EUR' : 'symbol' : '1.2-2' : 'fr' }}
+                    </p>
                   <a href="#" class="btn btn-primary">Détails</a>
                 </div>
             </div>
