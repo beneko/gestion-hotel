@@ -6,5 +6,4 @@ export interface IHotel {
     price: number;
     imageUrl: string;
     rating: number; 
-
 }
